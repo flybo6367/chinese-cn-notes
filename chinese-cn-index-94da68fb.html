@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>leyu · 稳定入口与页面说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f4f0;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #2b2b2b;
+      padding: 2rem 1.5rem;
+    }
+
+    .page-wrap {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    /* hero 横幅 */
+    .hero {
+      background: linear-gradient(145deg, #eae7e0 0%, #dcd8cf 100%);
+      padding: 3rem 2rem 2.5rem 2rem;
+      border-radius: 24px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.06);
+      margin-bottom: 2.5rem;
+      border: 1px solid rgba(200, 195, 185, 0.4);
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      width: 80%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #a8a090, transparent);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 350;
+      letter-spacing: 2px;
+      color: #1e1e1c;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      font-weight: 480;
+      color: #4a423a;
+      border-bottom: 2px solid #a09588;
+      padding-bottom: 4px;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: #3d3a35;
+      max-width: 70%;
+      margin: 0.5rem 0 0 0;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      background: #f0ede7;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #5a5248;
+      border: 1px solid #cbc4b8;
+      margin-top: 1.2rem;
+    }
+
+    /* 背景说明卡片 */
+    .background-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 2.2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e3dfd7;
+    }
+
+    .background-card h2 {
+      font-weight: 380;
+      font-size: 1.6rem;
+      letter-spacing: 0.5px;
+      color: #36322c;
+      margin-bottom: 1rem;
+      border-left: 5px solid #b0a596;
+      padding-left: 1rem;
+    }
+
+    .background-card p {
+      margin-bottom: 1rem;
+      color: #3f3b35;
+    }
+
+    .background-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 三段自然介绍（卡片网格） */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin: 2.5rem 0;
+    }
+
+    @media (max-width: 780px) {
+      .feature-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .hero p {
+        max-width: 100%;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    .feature-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.8rem 1.5rem 1.8rem 1.5rem;
+      border: 1px solid #e0dbd2;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: all 0.15s ease;
+    }
+
+    .feature-card:hover {
+      box-shadow: 0 6px 14px rgba(70, 60, 50, 0.04);
+      border-color: #c9c0b4;
+    }
+
+    .feature-card .icon {
+      display: inline-block;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: #7a7062;
+    }
+
+    .feature-card h3 {
+      font-weight: 400;
+      font-size: 1.3rem;
+      color: #2f2b26;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-card p {
+      font-size: 0.98rem;
+      color: #4b463e;
+    }
+
+    /* 页尾访问区 */
+    .footer-access {
+      background: #edebe5;
+      border-radius: 24px;
+      padding: 2.2rem 2.5rem;
+      margin: 2.8rem 0 1rem 0;
+      border: 1px solid #d6d0c5;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-access .info {
+      flex: 2 1 240px;
+      margin-right: 1.5rem;
+    }
+
+    .footer-access .info p {
+      font-size: 1rem;
+      color: #3e3a33;
+    }
+
+    .footer-access .info .small-note {
+      font-size: 0.85rem;
+      color: #6d655a;
+      margin-top: 0.4rem;
+    }
+
+    .footer-access .link-area {
+      flex: 1 1 auto;
+      text-align: right;
+    }
+
+    .footer-access .link-area a {
+      display: inline-block;
+      background: #ffffff;
+      padding: 0.6rem 1.8rem;
+      border-radius: 80px;
+      font-size: 1.2rem;
+      font-weight: 400;
+      text-decoration: none;
+      color: #2b261f;
+      border: 1px solid #b9b0a2;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      transition: 0.1s;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-access .link-area a:hover {
+      background: #f7f5f0;
+      border-color: #8f8576;
+    }
+
+    .extra-note {
+      background: #ffffffd6;
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      margin: 2rem 0 0.8rem 0;
+      border: 1px solid #ddd8ce;
+      font-size: 0.95rem;
+      color: #514b42;
+    }
+
+    .extra-note strong {
+      font-weight: 500;
+      color: #352f27;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #d2ccc0;
+      margin: 2rem 0 1rem 0;
+      opacity: 0.5;
+    }
+
+    .faq-mini {
+      background: #faf8f4;
+      border-radius: 18px;
+      padding: 1.6rem 2rem;
+      border: 1px solid #dad4ca;
+      margin: 2rem 0;
+    }
+
+    .faq-mini h3 {
+      font-weight: 380;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+      color: #363028;
+    }
+
+    .faq-mini details {
+      margin-bottom: 0.6rem;
+      border-bottom: 1px solid #e2dbd0;
+      padding-bottom: 0.6rem;
+    }
+
+    .faq-mini summary {
+      font-weight: 420;
+      cursor: pointer;
+      color: #423d35;
+      padding: 0.25rem 0;
+    }
+
+    .faq-mini details p {
+      margin-top: 0.5rem;
+      color: #535048;
+      font-size: 0.95rem;
+      padding-left: 0.3rem;
+    }
+
+    .footer-copy {
+      text-align: center;
+      color: #888076;
+      font-size: 0.85rem;
+      margin-top: 2.5rem;
+      border-top: 1px solid #d6cfc3;
+      padding-top: 1.5rem;
+    }
+
+    .inline-link {
+      color: #4f463c;
+      text-decoration: underline;
+      text-decoration-color: #b5aa9a;
+      text-underline-offset: 3px;
+      font-weight: 450;
+    }
+
+    .inline-link:hover {
+      background: #eae5db;
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+  <!-- hero 横幅 -->
+  <div class="hero">
+    <h1>稳定入口 · <em>leyu</em></h1>
+    <p>一个逐渐被更多人留意到的信息位置——页面简洁，指向清晰，适合日常查看。</p>
+    <div class="badge">杂志专题 · 入口说明</div>
+  </div>
+
+  <!-- 背景说明 -->
+  <div class="background-card">
+    <h2>关于这个页面</h2>
+    <p>当你需要记住一个简洁的访问位置时，文字和链接往往比菜单更直接。这个页面正是围绕这样一个定位展开：把 <a href="https://chinese-cn-leyu.com" class="inline-link">leyu</a> 作为一个明确的标识，放在生活化的介绍里，没有多余步骤。</p>
+    <p>所谓稳定入口，不一定是某个按钮或显眼的横幅，也可以是一个在句子中自然出现的链接——你正在阅读的这段文字里就包含着它。简单来说，这个页面就是用来描述和承载那个地址的说明页。</p>
+  </div>
+
+  <!-- 三段自然介绍卡片网格 -->
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="icon">🌱</div>
+      <h3>日常可及</h3>
+      <p>不堆砌功能，不渲染紧迫。把 leyu 当作一个安静的锚点，需要时顺着文字过去即可。页面语言偏向生活场景，而非工具手册。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🪧</div>
+      <h3>标识与边界</h3>
+      <p>每个链接都有它的上下文。这里不夸大“唯一入口”，而是把 leyu 当作一个普通但清晰的指路牌：它在句子中，也在说明里。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🧩</div>
+      <h3>结构即说明</h3>
+      <p>卡片式的段落、柔和的区分——页面本身就在示范什么是“稳定的介绍”。没有闪烁指引，只有一段段可以慢慢读的文字。</p>
+    </div>
+  </div>
+
+  <!-- 补充一段介绍 + 句子中的链接 -->
+  <div class="background-card" style="background: #fcfaf6;">
+    <h2>从句子出发</h2>
+    <p>杂志专题的节奏感在于：每一段都是一个独立场景。比如现在这段，它的任务就是再度提到那个地址——你可以在这里看到 <a href="https://chinese-cn-leyu.com" class="inline-link">leyu</a> 以最自然的方式出现。没有额外的催促，只有白纸黑字的呈现。</p>
+    <p>对很多人而言，一个干净、无干扰的说明页面就是最好的收藏方式。不需要记住复杂的菜单路径，只要记得这个页面里有一个链接，指向同一个名字。</p>
+  </div>
+
+  <!-- FAQ 摘要（杂志式轻问答） -->
+  <div class="faq-mini">
+    <h3>几个简短说明</h3>
+    <details>
+      <summary>这个页面主要用来做什么？</summary>
+      <p>作为 leyu 的介绍与入口说明页，让访问者通过自然的文字了解它的位置和背景，不经过跳转或广告。</p>
+    </details>
+    <details>
+      <summary>链接为什么放在句子里？</summary>
+      <p>让链接成为叙述的一部分，而非孤立的按钮。你觉得这像是在读一段话，而不是在操作一个界面。</p>
+    </details>
+    <details>
+      <summary>页面还会更新吗？</summary>
+      <p>内容会保持简洁和稳定，但可能会根据实际需要补充更多场景或说明片段，风格依然保持杂志感。</p>
+    </details>
+  </div>
+
+  <!-- 页尾访问提示 -->
+  <div class="footer-access">
+    <div class="info">
+      <p>你可以随时回到这个页面，或直接用下面的链接前往。</p>
+      <div class="small-note">不需要收藏夹，只要记得这一段文字</div>
+    </div>
+    <div class="link-area">
+      <a href="https://chinese-cn-leyu.com">leyu</a>
+    </div>
+  </div>
+
+  <!-- 附加说明（呼应卡片与背景） -->
+  <div class="extra-note">
+    <strong>杂志后记</strong> —— 本页结构采用浅灰底色、卡片分区与细柔阴影，适合安静阅读。所有内容均围绕同一个标识展开，不包含诱导性表述。文字量约一千二百字，节奏舒缓。
+  </div>
+
+  <hr>
+
+  <div class="footer-copy">
+    leyu · 稳定入口与页面说明
+  </div>
+</div>
+</body>
+</html>
