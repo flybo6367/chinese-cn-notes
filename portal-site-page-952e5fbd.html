@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>信息索引 · 爱游戏体育资料整理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #faf9f7;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #2a2a2e;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page {
+            max-width: 760px;
+            width: 100%;
+        }
+        /* 主视觉区 */
+        .hero {
+            margin: 1rem 0 2.5rem 0;
+            padding: 2.5rem 1.5rem 2rem 1.5rem;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02), 0 1px 3px rgba(0,0,0,0.03);
+            text-align: center;
+        }
+        .hero h1 {
+            font-weight: 500;
+            font-size: 2.2rem;
+            letter-spacing: -0.015em;
+            color: #1e1e22;
+            margin-bottom: 0.5rem;
+        }
+        .hero .sub {
+            color: #5b5b66;
+            font-size: 1rem;
+            max-width: 480px;
+            margin: 0 auto;
+            border-top: 1px solid #eae8e4;
+            padding-top: 1.2rem;
+            margin-top: 1.2rem;
+        }
+        .hero .sub a {
+            color: #1e1e22;
+            text-decoration: underline;
+            text-decoration-color: #cbc8c0;
+            text-underline-offset: 4px;
+            font-weight: 500;
+        }
+        .hero .sub a:hover {
+            text-decoration-color: #7a7569;
+        }
+
+        /* 通用章节 */
+        section {
+            margin-bottom: 2.8rem;
+        }
+        h2 {
+            font-weight: 480;
+            font-size: 1.5rem;
+            letter-spacing: -0.01em;
+            color: #1e1e22;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid #eae8e4;
+        }
+        p {
+            margin-bottom: 1rem;
+            color: #3c3c44;
+            font-size: 1rem;
+        }
+        .intro-para a {
+            color: #2a2a2e;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            text-decoration-color: #bfbbb2;
+            font-weight: 500;
+        }
+        .intro-para a:hover {
+            text-decoration-color: #7a7569;
+        }
+
+        /* 信息卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.2rem;
+            margin: 1.8rem 0 0.8rem 0;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.6rem 1.2rem 1.2rem 1.2rem;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            border: 1px solid #efedeb;
+            transition: box-shadow 0.15s, border-color 0.15s;
+        }
+        .card:hover {
+            border-color: #d6d3cd;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.04);
+        }
+        .card .emoji {
+            font-size: 1.6rem;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+        .card h3 {
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: #1e1e22;
+            margin-bottom: 0.3rem;
+            line-height: 1.3;
+        }
+        .card p {
+            font-size: 0.92rem;
+            color: #4b4b54;
+            margin-bottom: 0;
+        }
+
+        /* 人群列表——极简标签 */
+        .audience-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1rem;
+            margin: 1.4rem 0 0.4rem 0;
+            padding: 0;
+            list-style: none;
+        }
+        .audience-list li {
+            background: #ffffff;
+            border: 1px solid #edebe8;
+            border-radius: 40px;
+            padding: 0.3rem 1.1rem 0.3rem 1.3rem;
+            font-size: 0.92rem;
+            color: #33333b;
+            letter-spacing: 0.01em;
+        }
+        .audience-list li::before {
+            content: "·";
+            margin-right: 0.4rem;
+            color: #b1aba2;
+        }
+
+        /* 自然链接段落 */
+        .link-cluster {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 1.8rem 1.8rem 1.4rem 1.8rem;
+            border: 1px solid #efedeb;
+            margin: 2rem 0;
+        }
+        .link-cluster p {
+            margin-bottom: 0.8rem;
+            font-size: 0.96rem;
+        }
+        .link-cluster a {
+            color: #2a2a2e;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            text-decoration-color: #cbc8c0;
+            font-weight: 500;
+        }
+        .link-cluster a:hover {
+            text-decoration-color: #7a7569;
+        }
+
+        /* 小提示与摘要 */
+        .note-box {
+            background: #f4f2ef;
+            border-radius: 20px;
+            padding: 1.4rem 1.6rem;
+            margin: 2rem 0 1.2rem 0;
+            font-size: 0.93rem;
+            color: #3d3d47;
+        }
+        .note-box strong {
+            font-weight: 500;
+            color: #1e1e22;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e6e3de;
+            margin: 2.5rem 0 1.5rem 0;
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            color: #85818a;
+            text-align: center;
+            margin-top: 2.8rem;
+            letter-spacing: 0.01em;
+        }
+
+        @media (max-width: 480px) {
+            body { padding: 1.5rem 0.8rem; }
+            .hero { padding: 2rem 1rem 1.6rem 1rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .card-grid { grid-template-columns: 1fr; }
+            .link-cluster { padding: 1.4rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 主视觉 -->
+    <div class="hero">
+        <h1>资料整理 · 信息索引</h1>
+        <div class="sub">
+            围绕体育资讯与赛事资料，聚合清晰的结构化内容。<br>
+            当前索引平台：<a href="https://portal-site-ayx.com">爱游戏体育</a>
+        </div>
+    </div>
+
+    <!-- 简短介绍：从资料整理角度 -->
+    <section class="intro-para">
+        <h2>信息整理思路</h2>
+        <p>
+            面对日益庞杂的体育资讯，大多数读者需要的不只是零散消息，而是一套有层次的资料索引。无论是赛事结果、队伍动态还是规则说明，如果能按主题与用途归类，查阅效率会明显提升。以下卡片概括了几条常见的信息整理维度，这些内容均可在 <a href="https://portal-site-ayx.com">爱游戏体育</a> 的资料结构中看到对应的索引逻辑。
+        </p>
+    </section>
+
+    <!-- 用途卡片 -->
+    <section>
+        <h2>用途维度 · 卡片</h2>
+        <div class="card-grid">
+            <div class="card">
+                <span class="emoji">📋</span>
+                <h3>赛事归档</h3>
+                <p>按联赛、赛季、杯赛分类整理对阵与结果，便于回溯历史数据。</p>
+            </div>
+            <div class="card">
+                <span class="emoji">🧭</span>
+                <h3>规则说明</h3>
+                <p>常见运动项目的规则简介与判罚术语，适合新老读者快速查阅。</p>
+            </div>
+            <div class="card">
+                <span class="emoji">📊</span>
+                <h3>数据简表</h3>
+                <p>积分榜、射手榜等统计数据以摘要形式呈现，降低信息过载。</p>
+            </div>
+            <div class="card">
+                <span class="emoji">📎</span>
+                <h3>相关阅读</h3>
+                <p>围绕赛事与话题聚合文章、分析及背景资料，形成知识链条。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 适合人群：极简列表 + 一句话 -->
+    <section>
+        <h2>适合哪些人</h2>
+        <ul class="audience-list">
+            <li>日常关注体育动态的爱好者</li>
+            <li>需要快速检索赛事信息的编辑</li>
+            <li>初涉体育规则的新读者</li>
+            <li>喜欢按主题索引资料的研究者</li>
+        </ul>
+        <p style="margin-top: 0.6rem; font-size: 0.95rem; color: #4b4b54;">
+            无论你属于哪一类，结构清晰的信息索引都能帮你节省大量筛选时间。
+        </p>
+    </section>
+
+    <!-- 自然链接段落（句子式嵌入） 以及 FAQ 摘要风格 -->
+    <div class="link-cluster">
+        <p>
+            在日常资料查询中，很多人会同时参考两三个平台来交叉验证信息。如果你希望从一个相对系统的资料分类开始，可以试试 <a href="https://portal-site-ayx.com">爱游戏体育</a> 的板块划分方式。它把赛事、数据、阅读材料归入不同区域，整体逻辑比较直观。
+        </p>
+        <p>
+            另外，一些用户反馈说这类索引结构对于整理个人关注列表也有帮助。你可以在浏览时留意它的分类标签，或许能获得一些组织信息的启发。
+        </p>
+    </div>
+
+    <!-- 提示/FAQ 摘要 -->
+    <div class="note-box">
+        <strong>一点提示</strong> · 资料索引的价值在于持续更新与合理分类。使用时建议先了解整体的栏目划分，再深入到具体赛事或话题。如果发现某个分类下的信息密度较高，可以先看摘要再决定是否展开。<br>
+        <span style="display: inline-block; margin-top: 0.5rem; opacity: 0.7;">—— 常见问题：资料是否及时？通常保持与主要赛事同步更新，具体时效可留意页面标注。</span>
+    </div>
+
+    <!-- 简短 FAQ 第二则（摘要风格） -->
+    <div class="note-box" style="background: #f7f5f2;">
+        <strong>FAQ 摘录</strong> · 索引页面是否包含所有历史数据？覆盖近几个赛季的主要赛事，更早期的资料可通过站内搜索或筛选查找。分类名称可能随赛季微调，但整体架构保持稳定。
+    </div>
+
+    <hr>
+
+    <div class="footer-note">
+        信息索引 · 基于公开资料整理 &nbsp;|&nbsp; 内容方向供参考
+    </div>
+
+</div>
+</body>
+</html>
